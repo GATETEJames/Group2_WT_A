@@ -1,51 +1,29 @@
 <?php
-//Ruth MUHAWENAYO 222007339 april 2024
-                // Database connection parameters
-                $servername = "localhost";
-                $username = "root";
-                $password = "";//this is empty because I din't set any password
-                $dbname = "bityeartwo2024";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bityeartwo2024";
 
-                // Create database connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // Check database connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
-$sql = "SELECT * FROM role";
-
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<title>The Information about role of user</title>";
-    echo "<h1>The Information about role of user</h1>";
-    echo "<table border='1'>
-            <tr>
-                <th>rid</th>
-                <th>userid</th>
-                <th>rolename</th>
-               
-            </tr>";
-
-     //Ruth MUHAWENAYO 222007339 april 2024
-
-    // Output data of each row
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["rid"] . "</td>";
-        echo "<td>" . $row["userid"] . "</td>";
-        echo "<td>" . $row["rolename"] . "</td>";
-       
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "no information found";
+$conn = new mysqli($servername, $username, $password, $dbname);if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+/* NIYOGITANGAZA YVETTE-222010460 */
 
-//Ruth MUHAWENAYO 222007339 april 2024
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Prepare and bind the parameters
+    $stmt = $conn->prepare("INSERT INTO role(rid, userid, rolename) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $rid, $userid, $rolename);
+    // Set parameters and execute
+    $rid = $_POST['rid'];
+    $userid = $_POST['userid'];
+    $rolename = $_POST['rolename'];
+   
+    if ($stmt->execute() == TRUE) {
+        echo "New record has been added successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+    $stmt->close();
+}
 $conn->close();
 ?>
