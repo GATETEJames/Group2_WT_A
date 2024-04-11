@@ -1,51 +1,31 @@
 <?php
-//Ruth MUHAWENAYO 222007339 april 2024
-                // Database connection parameters
-                $servername = "localhost";
-                $username = "root";
-                $password = "";//this is empty because I din't set any password
-                $dbname = "bityeartwo2024";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bityeartwo2024";
 
-                // Create database connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // Check database connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
-$sql = "SELECT * FROM like";
-
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<title>The Information about like</title>";
-    echo "<h1>The Information about like</h1>";
-    echo "<table border='1'>
-            <tr>
-                <th>lid</th>
-                <th>contentid</th>
-                <th>userid</th>
-               
-            </tr>";
-
-     //Ruth MUHAWENAYO 222007339 april 2024
-
-    // Output data of each row
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["lid"] . "</td>";
-        echo "<td>" . $row["contentid"] . "</td>";
-        echo "<td>" . $row["userid"] . "</td>";
-       
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "no information found";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-
-//Ruth MUHAWENAYO 222007339 april 2024
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // DONE BY NIYOGITANGAZA YVETTE-222010460
+    $stmt = $conn->prepare("INSERT INTO likes(lid, commentid, userid) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $lid, $commentid, $userid);
+    $lid = $_POST['lid'];
+    $commentid = $_POST['commentid'];
+    $userid = $_POST['userid'];
+   
+    if ($stmt->execute()) {
+        echo "New record has been added successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+    $stmt->close();
+}
+else {
+        echo "Error: User ID does not exist";
+    }
 $conn->close();
 ?>
+
