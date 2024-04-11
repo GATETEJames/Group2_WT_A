@@ -1,51 +1,26 @@
 <?php
-//Ruth MUHAWENAYO 222007339 april 2024
-                // Database connection parameters
-                $servername = "localhost";
-                $username = "root";
-                $password = "";//this is empty because I din't set any password
-                $dbname = "bityeartwo2024";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bityeartwo2024";
 
-                // Create database connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    /* NIYOGITANGAZA YVETTE-222010460 */
 
-                // Check database connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
 
-$sql = "SELECT * FROM comment";
-
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<title>The Information about comment of users</title>";
-    echo "<h1>The Information about comment of users</h1>";
-    echo "<table border='1'>
-            <tr>
-                <th>cid</th>
-                <th>contentid</th>
-                <th>userid</th>
-               
-            </tr>";
-
-     //Ruth MUHAWENAYO 222007339 april 2024
-
-    // Output data of each row
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["cid"] . "</td>";
-        echo "<td>" . $row["contentid"] . "</td>";
-        echo "<td>" . $row["userid"] . "</td>";
-       
-        echo "</tr>";
+    $stmt = $conn->prepare("INSERT INTO comment(contentid,userid) VALUES ( ?, ?)");
+    $stmt->bind_param("ss", $contentid, $userid);
+ 
+    $contentid = $_POST['contentid'];
+    $userid = $_POST['userid'];
+   
+    if ($stmt->execute() == TRUE) {
+        echo "New record has been added successfully";
+    } else {
+        echo "Error: " . $stmt->error;
     }
-    echo "</table>";
-} else {
-    echo "no information found";
+    $stmt->close();
 }
-
-//Ruth MUHAWENAYO 222007339 april 2024
-
 $conn->close();
 ?>
