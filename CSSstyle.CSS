@@ -1,0 +1,71 @@
+/* IGIHOZO PRINCE   */
+/* 222003087   */
+       
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* Head styles */
+.head {
+  background-color: #077287;
+  padding: 10px;
+}
+
+.head p {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Navigation styles */
+.head > a {
+  display: inline-block;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #077287;
+  transition: background-color 0.3s ease;
+}
+
+.head > a:hover {
+  background-color: #003d80;
+}
+.dropdown{
+    position: right;
+    display: inline-block;
+    direction: rtl;
+}
+.dropdown-contents{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.dropdown-contents a{
+color: black;
+padding: 12px 18px;
+text-decoration: none;
+display: block;
+}
+.dropdown-contents a:hover{
+    background-color: #ddd;
+}
+.dropdown:hover .dropdown-contents{
+    display: block;
+}
+
+
+
+
+  
