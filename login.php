@@ -1,9 +1,9 @@
 <?php
 $servername = "localhost";
-$username = "admin";
-$password = "bityear2@2024";
+$username = "root";
+$password = "";
 $dbname = "bityeartwo2024";
-
+//DONE BY NIYOGITANGAZA YVETTE-222010460
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
@@ -16,7 +16,7 @@ $password = $_POST['password'];
 $sql = "SELECT *FROM user WHERE username='$uname' AND password='$password'";
 $result =$conn->query($sql);
 if ($result->num_rows >0) {
-  // echo "successfully loggedin!";
+  // 
   header("Location:index.php");
       exit();
 } else {
