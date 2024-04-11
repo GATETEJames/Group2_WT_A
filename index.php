@@ -110,13 +110,13 @@ display: block;
         <a href="index.php">Home</a>
         <a href="about.php">About</a>
         <a href="contact.php">Contact</a>
-        <a href="Tables.html">Tables</a>
+        <a href="tables.php">Tables</a>
         <a href="forms.html">Form</a>
-        <a href="list.html">List</a>
+        <a href="list.php">List</a>
         <a href="images.html">Images</a>
         <a href="audio.html">Audio</a>
         <a href="video.html">Video</a>
-        <a href="articles.php">Articles</a>
+        <a href="ticles.html">Articles</a>
         <li class="dropdown"><a href="#">settings</a>
             <div class="dropdown-contents">
                 <a href="login.html">log out</a>
